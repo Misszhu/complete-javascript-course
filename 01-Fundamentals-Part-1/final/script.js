@@ -344,9 +344,9 @@ GOOD LUCK 😀
 
 const dolphinsScores = (96 + 108 + 89) / 3
 const koalasScores = (88 + 91 + 110) / 3
-if (dolphinsScores >  koalasScores) {
+if (dolphinsScores > koalasScores) {
   console.log('Dolphins are the winner!');
-} else if (dolphinsScores === koalasScores)  {
+} else if (dolphinsScores === koalasScores) {
   console.log('The game is the draw!');
 } else {
   console.log('Koala are the winner!');
@@ -354,11 +354,11 @@ if (dolphinsScores >  koalasScores) {
 console.log('BONUS 1:');
 const dolphinsScores1 = (97 + 112 + 101) / 3
 const koalasScores1 = (109 + 95 + 123) / 3
-if (dolphinsScores1 >  koalasScores1 && dolphinsScores1 >= 100) {
+if (dolphinsScores1 > koalasScores1 && dolphinsScores1 >= 100) {
   console.log('Dolphins are the winner!');
-} else if (koalasScores1 >  dolphinsScores1 && koalasScores1 >= 100) {
+} else if (koalasScores1 > dolphinsScores1 && koalasScores1 >= 100) {
   console.log('Koala are the winner!');
-} else if (koalasScores1 === dolphinsScores1 && koalasScores1 ===  100) {
+} else if (koalasScores1 === dolphinsScores1 && koalasScores1 === 100) {
   console.log('The game is the draw!');
 } else {
   console.log('No team wins the trophy.');
@@ -482,6 +482,11 @@ HINT: Value X is between 50 and 300, if it's >= 50 && <= 300 😉
 
 GOOD LUCK 😀
 */
+const bill = 275;
+const tip = bill > 50 && bill < 300 ? 0.15 : 0.2;
+console.log(`The bill was ${bill}, the tip was ${bill * tip}, and the total value was ${bill + bill * tip}`);
+
+
 
 /*
 const bill = 430;
