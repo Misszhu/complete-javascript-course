@@ -342,6 +342,28 @@ TEST DATA BONUS 2: Dolphins score 97, 112 and 101. Koalas score 109, 95 and 106
 GOOD LUCK 😀
 */
 
+const dolphinsScores = (96 + 108 + 89) / 3
+const koalasScores = (88 + 91 + 110) / 3
+if (dolphinsScores >  koalasScores) {
+  console.log('Dolphins are the winner!');
+} else if (dolphinsScores === koalasScores)  {
+  console.log('The game is the draw!');
+} else {
+  console.log('Koala are the winner!');
+}
+console.log('BONUS 1:');
+const dolphinsScores1 = (97 + 112 + 101) / 3
+const koalasScores1 = (109 + 95 + 123) / 3
+if (dolphinsScores1 >  koalasScores1 && dolphinsScores1 >= 100) {
+  console.log('Dolphins are the winner!');
+} else if (koalasScores1 >  dolphinsScores1 && koalasScores1 >= 100) {
+  console.log('Koala are the winner!');
+} else if (koalasScores1 === dolphinsScores1 && koalasScores1 ===  100) {
+  console.log('The game is the draw!');
+} else {
+  console.log('No team wins the trophy.');
+}
+
 /*
 // const scoreDolphins = (96 + 108 + 89) / 3;
 // const scoreKoalas = (88 + 91 + 110) / 3;
