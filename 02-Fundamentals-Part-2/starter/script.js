@@ -27,25 +27,25 @@ GOOD LUCK 😀
 // 3. 创建一个 checkWinner 函数，接收两个参数 avgDolphins / avgKoalas，在控制台打印winner、victory points， "Koalas win (30 vs. 13)"
 // 4. 这次没有平局
 
-const calcAverage = (score1, score2, score3) => (score1 + score2 + score3) / 3
-const avgDolphins = calcAverage(44, 23, 71)
-const avgKoalas = calcAverage(65, 54, 49)
-function checkWinner(avgDolphins, avgKoalas) {
-  // 这里写了一个少写了等号
-  if (avgDolphins >= avgKoalas * 2) {
-    console.log(`Dolphins win (${avgDolphins} vs. ${avgKoalas})`);
-  } else if (avgKoalas >= avgDolphins * 2) {
-    console.log(`Koalas win (${avgKoalas} vs. ${avgDolphins})`);
-  } else {
-    console.log('No Winners!')
-  }
-}
+// const calcAverage = (score1, score2, score3) => (score1 + score2 + score3) / 3
+// const avgDolphins = calcAverage(44, 23, 71)
+// const avgKoalas = calcAverage(65, 54, 49)
+// function checkWinner(avgDolphins, avgKoalas) {
+//   // 这里写了一个少写了等号
+//   if (avgDolphins >= avgKoalas * 2) {
+//     console.log(`Dolphins win (${avgDolphins} vs. ${avgKoalas})`);
+//   } else if (avgKoalas >= avgDolphins * 2) {
+//     console.log(`Koalas win (${avgKoalas} vs. ${avgDolphins})`);
+//   } else {
+//     console.log('No Winners!')
+//   }
+// }
 
-checkWinner(avgDolphins, avgKoalas)
+// checkWinner(avgDolphins, avgKoalas)
 
-const avgDolphins1 = calcAverage(85, 54, 41)
-const avgKoalas1 = calcAverage(23, 34, 27)
-checkWinner(avgDolphins1, avgKoalas1)
+// const avgDolphins1 = calcAverage(85, 54, 41)
+// const avgKoalas1 = calcAverage(23, 34, 27)
+// checkWinner(avgDolphins1, avgKoalas1)
 
 
 /*
@@ -178,11 +178,10 @@ GOOD LUCK 😀
 const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52]
 const calcTip = bill => bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2
 const tips = [], totals = []
-for (const i = 0; i < bills.length; i++) {
+for (let i = 0; i < bills.length; i++) {
   const tip = calcTip(bills[i])
   tips.push(tip)
   totals.push(bills[i] + tip);
-  // TODO
 }
 
 console.log(`Here is the tips: ${tips}`);
@@ -198,3 +197,4 @@ function calcAverage(arr) {
 }
 
 console.log(`The average is ${calcAverage(totals)}`);
+
