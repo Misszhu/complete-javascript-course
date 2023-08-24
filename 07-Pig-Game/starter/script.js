@@ -1,31 +1,52 @@
 'use strict';
 
-const playerEl0 = document.querySelector('.player--0')
-const playerEl1 = document.querySelector('.player--1')
-const currentScoreEl0 = document.getElementById('current--0')
-const currentScoreEl1 = document.getElementById('current--1')
+const player0El = document.querySelector('.player--0')
+const player1El = document.querySelector('.player--1')
+const score0El = document.querySelector('#score--0');
+const score1El = document.getElementById('score--1');
+const current0El = document.getElementById('current--0')
+const current1El = document.getElementById('current--1')
 const newBtn = document.querySelector('.btn--new')
 const rollBtn = document.querySelector('.btn--roll')
 const holdBtn = document.querySelector('.btn--hold')
 const diceEl = document.querySelector('.dice')
-let playerScores = [0, 0]
 
-let currentScore = 0
-let activePlayer = 0
+let playerScores, currentScore, activePlayer, playing
 
-diceEl.classList.add('hidden')
+const init = function () {
+  playerScores = [0, 0]
+  currentScore = 0
+  activePlayer = 0
+  playing = true
+
+  diceEl.classList.add('hidden')
+
+  current0El.textContent = 0;
+  current1El.textContent = 0;
+  score0El.textContent = 0;
+  score1El.textContent = 0;
+  player0El.classList.remove('player--winner');
+  player1El.classList.remove('player--winner');
+  player0El.classList.add('player--active');
+  player1El.classList.remove('player--active');
+}
+init();
+
 
 function switchPlay() { 
   diceEl.classList.add('hidden')
   currentScore = 0
   document.getElementById(`current--${activePlayer}`).textContent = 0
-  playerEl0.classList.toggle('player--active')
-  playerEl1.classList.toggle('player--active')
+  player0El.classList.toggle('player--active')
+  player1El.classList.toggle('player--active')
 
   activePlayer = activePlayer === 0 ? 1 : 0
 }
 
 rollBtn.addEventListener('click', function() {
+  if (!playing) {
+    return
+  }
   diceEl.classList.remove('hidden')
   const score = Math.trunc(Math.random() * 6) + 1
   currentScore += score
@@ -38,24 +59,21 @@ rollBtn.addEventListener('click', function() {
 })
 
 holdBtn.addEventListener('click', function() {
+  if (!playing) {
+    return
+  }
   playerScores[activePlayer] = currentScore + playerScores[activePlayer]
   document.getElementById(`score--${activePlayer}`).textContent = playerScores[activePlayer] 
 
   if (playerScores[activePlayer]>=20)  {
     document.querySelector(`.player--${activePlayer}`).classList.add('player--winner')
+    document.querySelector(`.player--${activePlayer}`).classList.remove('player--active')
+    playing = false
     return 
-  }
+  } 
   
   switchPlay()
 })
 
-newBtn.addEventListener('click', function() {
-  document.getElementById(`current--${activePlayer}`).textContent = 0
-  document.getElementById(`player--${activePlayer}`).classList.remove('player--winner')
-  playerScores = [0, 0]
-  currentScore = 0
-  activePlayer = 0
-  currentScoreEl0.textContent = 0
-  currentScoreEl1.textContent = 0
-})
+newBtn.addEventListener('click', init)
 
