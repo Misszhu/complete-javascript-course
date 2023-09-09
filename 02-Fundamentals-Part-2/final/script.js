@@ -100,7 +100,7 @@ const yearsUntilRetirement = function (birthYeah, firstName) {
   const retirement = 65 - age;
 
   if (retirement > 0) {
-    console.log(`${firstName} retires in ${retirement} years`);
+    console.log(`${firstName} re tires in ${retirement} years`);
     return retirement;
   } else {
     console.log(`${firstName} has already retired 🎉`);
@@ -230,8 +230,7 @@ console.log(friends.indexOf('Steven'));
 console.log(friends.indexOf('Bob'));
 
 friends.push(23);
-console.log(friends.includes('Steven'));
-console.log(friends.includes('Bob'));
+
 console.log(friends.includes(23));
 
 if (friends.includes('Steven')) {

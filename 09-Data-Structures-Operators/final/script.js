@@ -71,7 +71,10 @@ for (const flight of flights.split('+')) {
 }
 
 ///////////////////////////////////////
-// Coding Challenge #4
+// 
+
+// 1. 把下划线模式的字符转换成驼峰
+// 2. 用 textarea 接收参数，按钮触发转换
 
 /* 
 Write a program that receives a list of variable names written in underscore_case and convert them to camelCase.
@@ -102,7 +105,7 @@ Afterwards, test with your own test data!
 GOOD LUCK 😀
 */
 
-/*
+
 document.body.append(document.createElement('textarea'));
 document.body.append(document.createElement('button'));
 
@@ -120,7 +123,25 @@ document.querySelector('button').addEventListener('click', function () {
     console.log(`${output.padEnd(20)}${'✅'.repeat(i + 1)}`);
   }
 });
-*/
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+document.querySelector('button').addEventListener('click', function () {
+  const text = document.querySelector('textarea').value;
+  const rows = text.split('\n')
+
+  for (const [i, row] of rows.entries()) {
+    const [first, second] = row.toLowerCase().trim().split('_')
+
+    const output = `${first}${second.replace(
+      second[0],
+      second[0].toUpperCase()
+    )}`;
+
+    console.log(`${output.padEnd(20)}${'✅'.repeat(i + 1)}`)
+  }
+})
+
 
 /*
 ///////////////////////////////////////
