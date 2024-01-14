@@ -76,9 +76,8 @@ const displayMovements = function (movements, sort = false) {
 
     const html = `
       <div class="movements__row">
-        <div class="movements__type movements__type--${type}">${
-      i + 1
-    } ${type}</div>
+        <div class="movements__type movements__type--${type}">${i + 1
+      } ${type}</div>
         <div class="movements__value">${mov}€</div>
       </div>
     `;
@@ -151,9 +150,8 @@ btnLogin.addEventListener('click', function (e) {
 
   if (currentAccount?.pin === Number(inputLoginPin.value)) {
     // Display UI and message
-    labelWelcome.textContent = `Welcome back, ${
-      currentAccount.owner.split(' ')[0]
-    }`;
+    labelWelcome.textContent = `Welcome back, ${currentAccount.owner.split(' ')[0]
+      }`;
     containerApp.style.opacity = 100;
 
     // Clear input fields
@@ -358,6 +356,31 @@ TEST DATA 2: Julia's data [9, 16, 6, 8, 3], Kate's data [10, 5, 6, 1, 4]
 
 GOOD LUCK 😀
 */
+
+function checkDogs(dogsJulia, dogsKate) {
+  let Julia = [...dogsJulia];
+  Julia.pop()
+  Julia.shift()
+  Julia.forEach(function (item, index) {
+    if (item >= 3) {
+      console.log(`Dog number ${index + 1} is an adult, and is ${item} years old`);
+    } else {
+      console.log(`Dog number ${index + 1} is still a puppy 🐶`);
+    }
+  })
+
+  dogsKate.forEach(function (item, index) {
+    if (item >= 3) {
+      console.log(`Dog number ${index + 1} is an adult, and is ${item} years old`);
+    } else {
+      console.log(`Dog number ${index + 1} is still a puppy 🐶`);
+    }
+  })
+}
+
+checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3])
+checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4])
+
 
 /*
 const checkDogs = function (dogsJulia, dogsKate) {
@@ -734,6 +757,15 @@ Eating an okay amount means the dog's current food portion is within a range 10%
 HINT 1: Use many different tools to solve these challenges, you can use the summary lecture to choose between them 😉
 HINT 2: Being within a range 10% above and below the recommended portion means: current > (recommended * 0.90) && current < (recommended * 1.10). Basically, the current portion should be between 90% and 110% of the recommended portion.
 
+1. 研究吃得太多还是太少事物；吃得太多：食物量大于或者少于推荐量。大于或小于推荐量的10%都属于正常数值
+2. 循环数组，遍历数组中的狗对象，计算推荐食物量并且添加新属性到对象中recommendedFood = weight ** 0.75 * 28
+3. 判断 Sarah 的狗是否吃太多或者太少了，并且打印出来（有些狗有多个主人，所以你要先从owners数组中找到Sarah）
+4. 把第3步的结果转换成字符串打印出来： "Matilda and Alice and Bob's dogs eat too much!" and "Sarah and John and Michael's dogs eat too little!"
+5.打印是否有狗狗吃的食物刚好是推荐量的
+6.打印是否有狗狗吃的事物是否属于正常数值
+7.把第6步的狗狗放进一个数组中
+8. 浅复制 dogs 数组并且根据食物的摄入量排序
+
 TEST DATA:
 const dogs = [
   { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
@@ -744,6 +776,56 @@ const dogs = [
 
 GOOD LUCK 😀
 */
+const dogs = [
+  { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
+  { weight: 8, curFood: 200, owners: ['Matilda'] },
+  { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
+  { weight: 32, curFood: 340, owners: ['Michael'] }
+];
+const ownersEatTooMuch = [], ownersEatTooLittle = [];
+const properDogs = []
+dogs.forEach(dog => {
+  // 1.
+  dog.recommendedFood = Math.trunc(dog.weight ** 0.75 * 28)
+  // 2.
+  if (dog.owners.indexOf('Sarah') !== -1) {
+    let desc = ''
+    if (dog.curFood > dog.recommendedFood * 1.10) {
+      desc = 'too much'
+    } else if (dog.curFood < dog.recommendedFood * 0.9) {
+      desc = 'too little'
+    } else {
+      desc = 'recommendedFood'
+    }
+    console.log(`${dog.owners.join(' and ')}'s dog eats ${desc}`);
+  }
+  if (dog.curFood < dog.recommendedFood * 1.10 && dog.curFood > dog.recommendedFood * 0.9) {
+    // 打印是否有狗狗吃的事物是否属于正常数值
+    properDogs.push(dog)
+    if (dog.curFood === dog.recommendedFood) {
+      // 5.
+      console.log('Yes, recommendedFood')
+    } else {
+      // 6.
+      console.log('Yes, ok!');
+    }
+  } else if (dog.curFood > dog.recommendedFood * 1.10) {
+    // 3.
+    ownersEatTooMuch.push(...dog.owners)
+  } else {
+    ownersEatTooLittle.push(...dog.owners)
+  }
+});
+// 4
+console.log(`${ownersEatTooMuch.join(' and ')}'s dog eats too much!`)
+console.log(`${ownersEatTooLittle.join(' and ')}'s dog eats too little!`)
+
+const sortDogs = [...dogs]
+// >0 调换位置，>0保持不变
+sortDogs.sort((cur, next) => {
+  return cur.recommendedFood - next.recommendedFood
+})
+console.log('sortDogs', sortDogs);
 
 /*
 const dogs = [
